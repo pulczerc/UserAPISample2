@@ -1,0 +1,29 @@
+version: '3.4'
+
+networks:
+  default:
+
+services:
+  userapisample2:
+    container_name: userapisample2
+    image: ${DOCKER_REGISTRY-}userapisample2
+    build:
+      context: .
+      dockerfile: UserAPISample2/Dockerfile
+    ports:
+     - "8000:80"
+     - "8443:443"
+    networks:
+      - default
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: userapisample2-mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - default
+    volumes:
+      - C:\DockerVolume\MongoDB\data\:/data/db

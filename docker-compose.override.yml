@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  userapisample2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DB_HOST=mongodb
+      - DB_PORT=27017
+      - DB_NAME=UserDB
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
